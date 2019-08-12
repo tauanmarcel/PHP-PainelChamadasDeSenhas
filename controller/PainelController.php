@@ -11,7 +11,7 @@ class PainelController{
 
 		$this->host = $host; 
 		$this->port = $port;
-
+		
 	}
 
 	function getMessage(){
@@ -42,6 +42,7 @@ class PainelController{
 
 		}catch(Exception $e){
 			dd($e->getMessage());
+			//dd(socket_strerror(socket_last_error()));
 		}
 
 		return $request;

@@ -15,9 +15,13 @@
 		<?php endif; ?>
 		<form method="post" class="jumbotron content-4 mt-2" action="controller/ChamadaController.php">
 			<?php isset($_GET['senha']) ? $senha = (int)$_GET['senha'] : $senha = 1 ?>
-			<legend>Próxima Senha: <?php echo $senha?></legend>
+			<legend>Pr&oacute;xima Senha: <?php echo $senha?></legend>
 			<input type="hidden" name="senha" value="<?php echo $senha ?>">
 			<button type="submit" class="btn btn-primary btn-lg" id="call">Chamar</button>
+		</form>
+		<form method="post" action="controller/ChamadaController.php" class="content-4"> 
+			<input type="hidden" name="senha" value="exit">
+			<button type="submit" class="btn text-primary float-right" id="call">Stop</button>
 		</form>
 	</body>
 </html>

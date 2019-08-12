@@ -19,8 +19,6 @@
 			$novaSenha = (int)$_POST['senha'] + 1;
 			header("location:{$goback}?senha={$novaSenha}&resp={$response}");	
 		}
-
-		
 	}else{
 		header("location:{$goback}");
 	}

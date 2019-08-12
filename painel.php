@@ -11,15 +11,26 @@ if(isset($_REQUEST['start'])){
 }
 
 ?>
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/main.css">
-<div class="jumbotron content-4 mt-2">
-	<p class="display-4"><?php if(isset($senha) && $senha != "exit"){ echo "Senha " . $senha; $painel->reload(); } else { echo "Sem senha!"; unset($_REQUEST);} ?></p>
-	<?php if(!isset($_REQUEST['start'])) : ?>
-		<form method="post" >
-			<p><input type="submit"  class="btn btn-primary btn-lg" name="start" value="Start"></p>
-		</form>
-	<?php endif; ?>
-</div>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Painel de Chamadas</title>
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<center><h1 class="display-4 mt-5 mb-4 text-info">Painel de Chamada</h1></center>
+		<div class="jumbotron content-4 mt-2">
+			<p class="display-4 text-danger"><?php if(isset($senha) && $senha != "exit"){ echo "Senha " . $senha; $painel->reload(); } else { echo "Sem senha!"; unset($_REQUEST);} ?></p>
+			<?php if(!isset($_REQUEST['start'])) : ?>
+				<form method="post" >
+					<p><input type="submit"  class="btn btn-primary btn-lg" name="start" value="Start"></p>
+				</form>
+			<?php endif; ?>
+		</div>
+	</body>
+</html>
+
+
 
 
