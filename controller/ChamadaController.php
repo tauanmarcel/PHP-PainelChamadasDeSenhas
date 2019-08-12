@@ -10,15 +10,26 @@
 
 	if(isset($_POST['senha']) && !empty($_POST['senha'])){
 
-		$response = $chamada->chamar($_POST['senha']);
+		$response = $chamada->send($_POST['senha']);
 
-		if($response['erro'] == 1){
+		if($response['error'] == 1){
 			$novaSenha = (int)$_POST['senha'];
-			header("location:{$goback}?senha={$novaSenha}&erro=" . $response['mensagem']);
+			header("location:{$goback}?senha={$novaSenha}&erro={$response['message']}");
 		}else{
 			$novaSenha = (int)$_POST['senha'] + 1;
-			header("location:{$goback}?senha={$novaSenha}&resp={$response}");	
+			header("location:{$goback}?senha={$novaSenha}&resp={$response['message']}");	
 		}
+
+		// echo json_encode(
+		// 	array(
+		// 		"error"   => $response['error'],
+		// 		"senha"   => $novaSenha,
+		// 		"message" => $response['message']
+		// 	)
+		// );
+
+		exit;
+
 	}else{
 		header("location:{$goback}");
 	}

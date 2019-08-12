@@ -1,4 +1,11 @@
 <?php
 
+/**
+* Define o host padrão para o websocket
+*/
 define("_HOST_", "localhost");
-define("_PORT_", 9045);
+
+/**
+* Define a porta padrão para o websocket
+*/
+define("_PORT_", 9046);

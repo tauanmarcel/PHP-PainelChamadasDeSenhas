@@ -21,34 +21,42 @@ class PainelController{
 			if(!($socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)))
 				throw new Exception("Não foi possível criar o socket", 1);
 
-			if(!socket_bind($socket, $this->host, $this->port))
+			if(!socket_bind($socket, $this->host, $this->port)){
+				socket_close($socket);
 				throw new Exception("Não foi possível associar o endereço ao socket", 1);
+			}
 		
-			if(!socket_listen($socket, 1))
-				throw new Exception("Não foi possível listar as conecções com o socket", 1);
+			if(!socket_listen($socket, 1)){
+				socket_close($socket);
+				throw new Exception("Não foi possível listar as conexões com o socket", 1);
+			}
 
-			if(!($conn = socket_accept($socket)))
-				throw new Exception("Não foi possível aceitar a conecção com o socket", 1);
+			if(!($conn = socket_accept($socket))){
+				socket_close($socket);
+				throw new Exception("Não foi possível aceitar a conexão com o socket", 1);
+			}
 
-			if(!$request = socket_read($conn, 1024))
+			if(!$reply = socket_read($conn, 1024)){
+				socket_close($socket);
 				throw new Exception("Não foi possível ler a requisição", 1);
+			}
 
-			$reply = "Senha {$request} chamada com sucesso!"; 
-
-			if(!socket_write($conn, $reply, strlen($reply)))
+			if(!socket_write($conn, $reply, strlen($reply))){
+				socket_close($socket);
 				throw new Exception("Não foi possível enviar uma resposta", 1);
+			}
 
 			socket_close($socket);
+
+			return $reply;
 
 		}catch(Exception $e){
 			dd($e->getMessage());
 			//dd(socket_strerror(socket_last_error()));
 		}
-
-		return $request;
 	}
 
 	function reload(){
-		echo "<script>setTimeout(function(){document.location.reload(true);}, 100);</script>";
+		echo "<script>setTimeout(function(){document.location.reload(true);}, 10);</script>";
 	}
 }

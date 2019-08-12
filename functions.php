@@ -1,7 +1,5 @@
 <?php
 
-include "classes/Mensagem.php";
-
 /* Print Pre */
 function pp($str = ""){
 	echo "<pre>";
