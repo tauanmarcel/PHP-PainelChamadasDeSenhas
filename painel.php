@@ -1,45 +1,38 @@
 <?php
 
-require_once "config.php";
-require_once "functions.php";
-require_once "controller/PainelController.php";
+require_once "config/app.php";
+require_once "includes/functions.php";
+require_once "controllers/PainelController.php";
 
 $painel = new PainelController(_HOST_, _PORT_);
 
 if(isset($_REQUEST['start'])){
-	$senha = $painel->getMessage();
+	$response = $painel->get();
 }
 
 ?>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<title>Painel de Chamadas</title>
-		<link rel="stylesheet" href="css/bootstrap.css">
-		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="public/css/bootstrap.css">
+		<link rel="stylesheet" href="public/css/main.css">
 	</head>
 	<body>
 		<center><h1 class="display-4 mt-5 mb-4 text-info">Painel de Chamada</h1></center>
 		<div class="jumbotron content-4 mt-2">
 			<p class="display-4 text-danger">
 				<?php 
-					if(isset($senha) && $senha != "exit"){ 
-						echo "Senha " . $senha; $painel->reload(); 
+					if(isset($response) && $response['reply'] != "exit" && $response['error'] != 1){ 
+						echo "Senha " . $response['reply'];
+						$painel->reload(); 
 					} else { 
 						echo "Sem senha!"; 
 						unset($_REQUEST);
 					} 
 				?>
 			</p>
-			<?php if(!isset($_REQUEST['start'])) : ?>
-				<form method="post" >
-					<p><input type="submit"  class="btn btn-primary btn-lg" name="start" value="Start"></p>
-				</form>
-			<?php endif; ?>
 		</div>
 	</body>
 </html>
-
-
-
-

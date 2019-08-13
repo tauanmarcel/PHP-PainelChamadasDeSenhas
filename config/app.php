@@ -8,4 +8,4 @@ define("_HOST_", "localhost");
 /**
 * Define a porta padrão para o websocket
 */
-define("_PORT_", 9046);
+define("_PORT_", 9048);
