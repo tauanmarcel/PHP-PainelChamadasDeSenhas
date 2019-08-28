@@ -53,11 +53,6 @@
 								<input type="submit" class="btn btn-danger btn-lg" id="call" value="Stop">
 							</form>
 						</div>
-						<div class="col-1 float-right">
-							<form method="post" action="painel.php" target="_blank">
-								<input type="submit"  class="btn btn-success btn-lg" name="start" value="Start">
-							</form>
-						</div>
 					</div>
 				</div>
 			</div>

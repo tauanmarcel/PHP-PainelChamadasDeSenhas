@@ -13,26 +13,35 @@ if(isset($_REQUEST['start'])){
 ?>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Painel de Chamadas</title>
-		<link rel="stylesheet" href="public/css/bootstrap.css">
-		<link rel="stylesheet" href="public/css/main.css">
-	</head>
+<head>
+	<meta charset="utf-8">
+	<title>Painel de Chamadas</title>
+	<link rel="stylesheet" href="public/css/bootstrap.css">
+	<link rel="stylesheet" href="public/css/main.css">
+</head>
 	<body>
 		<center><h1 class="display-4 mt-5 mb-4 text-info">Painel de Chamada</h1></center>
 		<div class="jumbotron content-4 mt-2">
 			<p class="display-4 text-danger">
 				<?php 
-					if(isset($response) && $response['reply'] != "exit" && $response['error'] != 1){ 
-						echo "Senha " . $response['reply'];
-						$painel->reload(); 
-					} else { 
-						echo "Sem senha!"; 
-						unset($_REQUEST);
-					} 
+				if(isset($response) && $response['reply'] != "exit" && $response['error'] != 1){ 
+					echo "Senha " . $response['reply'];
+					$painel->reload(); 
+				} else { 
+					echo "Sem senha!"; 
+					unset($_REQUEST);
+				} 
 				?>
 			</p>
 		</div>
+		<?php if(!isset($_REQUEST['start'])) : ?>
+			<div class="grid col-8">
+				<div class="col-1 float-right mt-5">
+					<form method="post" action="painel.php">
+						<input type="submit"  class="btn btn-success btn-lg" name="start" value="Start">
+					</form>
+				</div>
+			</div>
+		<?php endif; ?>
 	</body>
 </html>

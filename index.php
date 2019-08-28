@@ -20,6 +20,9 @@
 								<li class="list-group-item">
 									<a href="chamada.php">Chamada</a>
 								</li>
+								<li class="list-group-item">
+									<a href="painel.php" target="_blank">Painel</a>
+								</li>
 							</ul>
 						</nav>
 					</aside>
